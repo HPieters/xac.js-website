@@ -1,0 +1,237 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+
+//@import "mixins";
+@import "bourbon/bourbon";
+
+
+@include font-face(Nexa, '../fonts/nexa_light-webfont');
+@include font-face(NexaBold, '../fonts/nexa_bold-webfont');
+
+$width: 760px;
+
+
+
+$main-color:                        rgba(44, 62, 80, 1);
+
+$download-font-color:               rgba(255,255,255,1);
+$subaction-font-color:              rgba(0, 0, 0, 0.5);
+$subaction-link-color:              rgba(0, 0, 0, 0.5);
+$subaction-border-color:            rgba(0, 0, 0, 0.3);
+$subaction-link-hover-color:        rgba(0, 0, 0, 0.8);
+$subaction-border-hover-color:      rgba(0, 0, 0, 0.5);
+
+$warning-background:                rgba(241, 196, 15, 1);
+$warning-font-color:                rgba(142, 88, 40, 1);
+$warning-link-hover-color:          rgba(0,0,0,0.8);
+
+$footer-font-color:                 rgba(44, 62, 80, 0.4);
+$footer-link-color:                 rgba(44, 62, 80, 0.4);
+$footer-link-hover-color:           rgba(44, 62, 80, 0.8);
+$footer-link-border-color:          rgba(44, 62, 80, 0.1);
+$footer-link-border-hover-color:    rgba(44, 62, 80, 0.3);
+
+@mixin text-shadow($h, $v, $radius, $color) {
+  text-shadow: $h $v $radius $color;
+  filter: dropshadow(color=$color, offx=$h, offy=$v);
+}
+
+html, body {
+    font-family: $helvetica;
+}
+
+a:link, a:visited {
+    text-decoration:    none;
+    color:              $footer-link-color;
+    border-bottom:      1px solid $footer-link-border-color;
+    padding-bottom:     2px;
+    @include transition(all 0.3s ease-in-out);
+
+    &:hover, &:active {
+        color:          $footer-link-hover-color;
+        border-bottom:  1px solid $footer-link-border-hover-color;
+    }
+}
+
+.left {
+    float: left;
+}
+
+.wrap {
+    width: $width;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+
+    .logo {
+        margin: 60px 0 40px;
+    }
+}
+
+.logo {
+    width: 101px;
+    height: 94px;
+}
+
+.main {
+     @include retina-image('../img/background', 600px 339px);
+     background-repeat: no-repeat;
+     background-position: center 0;
+}
+
+.main-heading {
+    padding:            70px 0 50px 0;
+
+    h1 {
+        font-family:    "NexaBold", Arial, sans-serif;
+        text-align:     center;
+        font-size:      2.2rem;
+        line-height:    2.8rem;
+        color:          $main-color;
+        text-transform: uppercase;
+        width:          450px;
+        margin:         0 auto;
+    }
+
+}
+
+.main-action {
+    text-align: center;
+    margin: 0 0 100px 0;
+
+    .main-download {
+        margin: 0 auto;
+
+        @include retina-image('../img/button_shadow', 233px 61px);
+        background-repeat: no-repeat;
+        background-position: center 1px;
+        height: 61px;
+        width: 233px;
+
+        a:link, a:visited {
+            font-family:    "NexaBold", Arial, sans-serif;
+            font-weight: normal;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color:$download-font-color;
+            border: none;
+
+            background-repeat: no-repeat;
+            background-position: center 0;
+            width: 221px;
+            height: 56px;
+            display: block;
+            padding: 18px 0 0 0;
+            margin-left: 6px;
+            @include transition(all 0.2s ease-in);
+            @include text-shadow(0px, 2px, 0px, rgba(0,0,0,.6));
+            @include retina-image('../img/button', 221px 56px);
+
+
+            &:hover {
+                //background-image: url('../img/button_hover.png');
+            }
+
+            &:active {
+                padding: 21px 0 0 0;
+                background-position: center -1px;
+                @include text-shadow(0px, 1px, 0px, rgba(0,0,0,.3));
+                @include retina-image('../img/button_down', 221px 56px);
+            }
+        }
+
+
+    }
+
+    p {
+        font-size: 0.8em;
+        margin: 15px 0 ;
+        color:$subaction-font-color;
+        text-align: center;
+
+        a:link, a:visited {
+            color: $subaction-link-color;
+            border-color: $subaction-border-color;
+
+            &:hover, &:active {
+                color: $subaction-link-hover-color;
+                border-color: $subaction-border-hover-color;
+            }
+        }
+    }
+}
+
+.main-warning {
+    background-color: $warning-background;
+    color:             $warning-font-color;
+    padding:    20px;
+    @include clearfix;
+    width: 650px;
+    margin: 0 auto;
+
+    .main-warning-icon {
+         @extend .left;
+         width: 10%;
+         height: 100%;
+        padding: 15px 10px 10px 10px;
+
+         background-position: center center;
+         display: inline-block;
+
+         span {
+            @include retina-image('../img/icon_warning', 64px 60px);
+            background-repeat: no-repeat;
+            height: 60px;
+            width: 64px;
+            display: block;
+            margin: auto auto;
+         }
+    }
+
+    .main-warning-content {
+        @extend .left;
+        width: 83%;
+        padding: 0 10px 0 15px;
+        h3 {
+            font-family:    "NexaBold", Arial, sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight:    bold;
+            line-height:    1.8rem;
+        }
+
+        p {
+            line-height:    1.4rem;
+            font-size:      0.9rem;
+
+            a:link, a:visited {
+                font-weight: bold;
+                color: $warning-font-color;
+                border:none;
+
+                &:hover, &:active {
+                    color: $warning-link-hover-color;
+                }
+            }
+        }
+
+
+    }
+}
+footer {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    text-align: right;
+    width: 710px;
+    color: $footer-font-color;
+    p {
+        padding: 40px 20px;
+    }
+}
