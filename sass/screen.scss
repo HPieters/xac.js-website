@@ -4,37 +4,28 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 @import "compass/reset";
-
-
 //@import "mixins";
 @import "bourbon/bourbon";
-
-
 @include font-face(Nexa, '../fonts/nexa_light-webfont');
 @include font-face(NexaBold, '../fonts/nexa_bold-webfont');
 
 $width: 760px;
-
-
-
 $main-color:                        rgba(44, 62, 80, 1);
-
 $download-font-color:               rgba(255,255,255,1);
 $subaction-font-color:              rgba(0, 0, 0, 0.5);
 $subaction-link-color:              rgba(0, 0, 0, 0.5);
 $subaction-border-color:            rgba(0, 0, 0, 0.3);
 $subaction-link-hover-color:        rgba(0, 0, 0, 0.8);
 $subaction-border-hover-color:      rgba(0, 0, 0, 0.5);
-
 $warning-background:                rgba(241, 196, 15, 1);
 $warning-font-color:                rgba(142, 88, 40, 1);
 $warning-link-hover-color:          rgba(0,0,0,0.8);
-
 $footer-font-color:                 rgba(44, 62, 80, 0.4);
 $footer-link-color:                 rgba(44, 62, 80, 0.4);
 $footer-link-hover-color:           rgba(44, 62, 80, 0.8);
 $footer-link-border-color:          rgba(44, 62, 80, 0.1);
 $footer-link-border-hover-color:    rgba(44, 62, 80, 0.3);
+$span-font-color:                   rgba(0,0,0,0.2);
 
 @mixin text-shadow($h, $v, $radius, $color) {
   text-shadow: $h $v $radius $color;
@@ -43,16 +34,19 @@ $footer-link-border-hover-color:    rgba(44, 62, 80, 0.3);
 
 html, body {
     font-family: $helvetica;
+    -webkit-backface-visibility: hidden;
 }
 
-a:link, a:visited {
+a, a:link, a:visited {
     text-decoration:    none;
     color:              $footer-link-color;
     border-bottom:      1px solid $footer-link-border-color;
     padding-bottom:     2px;
-    @include transition(all 0.3s ease-in-out);
+
 
     &:hover, &:active {
+
+    @include transition(color 0.3s ease-in-out);
         color:          $footer-link-hover-color;
         border-bottom:  1px solid $footer-link-border-hover-color;
     }
@@ -102,52 +96,94 @@ header {
 
 }
 
+.global-main-action-button {
+    background-repeat: no-repeat;
+    background-position: center 1px;
+    display: inline-block;
+}
+
+.global-main-action-button-a {
+    font-family:    "NexaBold", Arial, sans-serif;
+    font-weight: normal;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color:$download-font-color;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    display: block;
+    padding: 18px 0 0 0;
+    margin-left: 6px;
+    @include transition(all 0.2s ease-in);
+    @include text-shadow(0px, 2px, 0px, rgba(0,0,0,.6));
+}
+
+.global-main-action-button-a-active {
+    padding: 21px 0 0 0;
+    background-position: center -1px;
+    @include text-shadow(0px, 1px, 0px, rgba(0,0,0,.3));
+}
+
 .main-action {
     text-align: center;
-    margin: 0 0 100px 0;
+    margin: 0 auto 100px auto;
 
     .main-download {
-        margin: 0 auto;
-
         @include retina-image('../img/button_shadow', 233px 61px);
-        background-repeat: no-repeat;
-        background-position: center 1px;
+        @extend .global-main-action-button;
         height: 61px;
         width: 233px;
 
         a:link, a:visited {
-            font-family:    "NexaBold", Arial, sans-serif;
-            font-weight: normal;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color:$download-font-color;
-            border: none;
-
-            background-repeat: no-repeat;
-            background-position: center 0;
+            @extend .global-main-action-button-a;
             width: 221px;
             height: 56px;
-            display: block;
-            padding: 18px 0 0 0;
-            margin-left: 6px;
-            @include transition(all 0.2s ease-in);
-            @include text-shadow(0px, 2px, 0px, rgba(0,0,0,.6));
             @include retina-image('../img/button', 221px 56px);
-
 
             &:hover {
                 //background-image: url('../img/button_hover.png');
             }
 
             &:active {
-                padding: 21px 0 0 0;
-                background-position: center -1px;
-                @include text-shadow(0px, 1px, 0px, rgba(0,0,0,.3));
+                @extend .global-main-action-button-a-active;
                 @include retina-image('../img/button_down', 221px 56px);
             }
         }
+    }
 
+    .main-tryout {
+        @include retina-image('../img/button_shadow_tryout', 200px 61px);
+        @extend .global-main-action-button;
+        height: 61px;
+        width: 200px;
 
+        a:link, a:visited {
+            @extend .global-main-action-button-a;
+            width: 188px;
+            height: 56px;
+            @include retina-image('../img/button_tryout', 188px 56px);
+
+            &:active {
+                @extend .global-main-action-button-a-active;
+                @include retina-image('../img/button_tryout_down', 188px 56px);
+            }
+        }
+    }
+
+    .and {
+
+        margin: 0px 15px;
+        display: inline-block;
+        height: 61px;
+
+        span {
+            font-family:    "NexaBold", Arial, sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: $span-font-color;
+            font-size: 1.0em;
+            display: block;
+        }
     }
 
     p {
@@ -166,6 +202,10 @@ header {
             }
         }
     }
+
+
+
+
 }
 
 .main-warning {
