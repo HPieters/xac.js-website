@@ -45,8 +45,7 @@ a, a:link, a:visited {
 
 
     &:hover, &:active {
-
-    @include transition(color 0.3s ease-in-out);
+        @include transition(color 0.3s ease-in-out);
         color:          $footer-link-hover-color;
         border-bottom:  1px solid $footer-link-border-hover-color;
     }
@@ -100,27 +99,28 @@ header {
     background-repeat: no-repeat;
     background-position: center 1px;
     display: inline-block;
+    vertical-align:top;
 }
 
 .global-main-action-button-a {
-    font-family:    "NexaBold", Arial, sans-serif;
-    font-weight: normal;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color:$download-font-color;
-    border: none;
-    background-repeat: no-repeat;
-    background-position: center 0;
-    display: block;
-    padding: 18px 0 0 0;
-    margin-left: 6px;
+    font-family:            "NexaBold", Arial, sans-serif;
+    font-weight:            normal;
+    letter-spacing:         1px;
+    text-transform:         uppercase;
+    color:                  $download-font-color;
+    border:                 none;
+    background-repeat:      no-repeat;
+    background-position:    center 0;
+    display:                block;
+    padding:                18px 0 0 0;
+    margin-left:            6px;
     @include transition(all 0.2s ease-in);
     @include text-shadow(0px, 2px, 0px, rgba(0,0,0,.6));
 }
 
 .global-main-action-button-a-active {
     padding: 21px 0 0 0;
-    background-position: center -1px;
+    background-position: center 0px;
     @include text-shadow(0px, 1px, 0px, rgba(0,0,0,.3));
 }
 
@@ -172,7 +172,7 @@ header {
 
     .and {
 
-        margin: 0px 15px;
+        margin: 20px 15px;
         display: inline-block;
         height: 61px;
 
@@ -182,6 +182,7 @@ header {
             text-transform: uppercase;
             color: $span-font-color;
             font-size: 1.0em;
+
             display: block;
         }
     }
@@ -220,7 +221,7 @@ header {
          @extend .left;
          width: 10%;
          height: 100%;
-        padding: 15px 10px 10px 10px;
+        padding: 10px 10px 10px 10px;
 
          background-position: center center;
          display: inline-block;
